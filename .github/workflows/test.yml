@@ -24,6 +24,11 @@ jobs:
         run: |
           forge --version
 
+      - name: Install Huff
+        run: |
+          curl -L https://huff.sh/install.sh | bash
+          echo "$HOME/.huff/bin" >> $GITHUB_PATH
+
       - name: Run Forge fmt
         run: |
           forge fmt --check
@@ -38,3 +43,5 @@ jobs:
         run: |
           forge test -vvv
         id: test
+        env:
+          FOUNDRY_PROFILE: ci
